@@ -1,0 +1,49 @@
+@mixin desktop {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+  
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+        )
+        rgb(var(--background-start-rgb));
+}
+
+.all-users {
+    @include desktop {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .user {
+        border: 1px solid #404040;
+        border-radius: 8px;
+
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+        }
+    }
+}
+  
